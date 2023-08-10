@@ -10,8 +10,8 @@ export const VetlyLayout = ({ children }) => {
       <Header />
       <main className="pl-5 pr-10 mb-5 py-3 flex">
         {/* TODO:agregar mas tipos de usuarios segun el tipo de usuario logueado. En este caso solamente tengo el de guest(invitado) y el de admin(administrador) */}
+        <div></div>
         {tipoUsuario ? <CategoryAdmin /> : <CategoryGuest />}
-
         {children}
       </main>
     </>

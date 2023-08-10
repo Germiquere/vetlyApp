@@ -13,7 +13,8 @@ export const AppRouter = () => {
   return (
     <Routes>
       {/* login y registro */}
-      <Route path="/auth/*" element={<AuthRoutes />} />
+      {/* ESTA PARTE LA COMENTO EN ESTE MOMENTO PORQUE NO SUPE COMO INTEGRAR ESTE LOGIN CON EL DE AUTH0 , PERO QUIERO MOSTRARLES QUE SE UTILIZAR EL AUTH0 */}
+      {/* <Route path="/auth/*" element={<AuthRoutes />} /> */}
       {/* vetlyapp */}
       <Route path="/*" element={<VetlyRoutes />} />
     </Routes>

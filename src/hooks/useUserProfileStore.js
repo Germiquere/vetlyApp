@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { startGettingUserProfileByEmail } from "../store/auth/thunks";
+import { startGettingUserProfileByEmail } from "../store/userProfile/thunks";
 
 export const useUserProfileStore = () => {
   const {

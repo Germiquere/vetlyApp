@@ -1,1 +1,2 @@
-export * from "./userProfileSlice";
+export * from "./authSlice";
+export * from "./thunks";
