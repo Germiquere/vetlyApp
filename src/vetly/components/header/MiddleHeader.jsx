@@ -1,10 +1,9 @@
 import React from "react";
 import { SearchBar } from "./SearchBar";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuthStore } from "../../../hooks";
 
 export const MiddleHeader = () => {
-  const { isAuthenticated, user } = useAuth0();
-
+  const { isAuthenticated, nickname, picture } = useAuthStore();
   return (
     <div className="flex pl-5 pr-10 justify-between mb-5">
       {/* TODO: Aqui iria el logo que me pasa la gente de design, que seria una imagen pero yo lo puse como un div a modo de ilustracion */}
@@ -14,11 +13,11 @@ export const MiddleHeader = () => {
         {isAuthenticated ? (
           <button className="text-center">
             <img
-              src={user.picture}
+              src={picture}
               alt="Imagen del usuario"
               className="w-8 h-8 rounded-full mx-auto mb-1"
             />
-            Bienvenido {user.given_name}
+            Bienvenido {nickname}
           </button>
         ) : (
           <button>

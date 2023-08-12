@@ -1,52 +1,78 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { useForm, useUserTypeStore } from "../../hooks";
+import { auth } from "../../services/AuthService";
+import { postRegisterUser } from "../../api/postRegisterUser";
 
 export const RegisterForm = () => {
+  // SE USA EN LA FUNCION COMENTADA EN LA LINEA 34
+  // const { userType } = useUserTypeStore();
+  const dataForm = {
+    email: "",
+    password: "",
+  };
+  const { email, password, onInputChange } = useForm(dataForm);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    auth.signup(
+      {
+        connection: "Username-Password-Authentication",
+        email: email,
+        password: password,
+      },
+      function (err, result) {
+        // TODO: MANEJAR DE UNA FORMA MAS LINDA EL ERROR
+        if (err) return alert("Algo salio mal: " + err.message);
+        if (result) {
+          console.log(result);
+          // TODO: mejorar esto para que se vea mas lindo
+          alert("cuenta creada con exito");
+
+          // HACER EL FETCHING REGISTRANDO EL USUARIO
+          // ESTA FUNCION ESTA COMENTADA PORQUE AL NO TENER UNA API FUNCIONANDO, SI LA EJECUTO SE ROMPE LA COMPILACION DEL CODIGO.
+          // -------------------------------------------------------------------------------------------------------
+          // postRegisterUser(email, userType)
+          //   .then((data) => {
+          //     console.log(data);
+          //   })
+          //   .catch((err) => {
+          //     console.log("Error en el registro del usuario:", error);
+          //   });
+          // -------------------------------------------------------------------------------------------------------
+          // UNA VEZ QUE YA EL USUARIO ESTA REGISTRADO TANTOO EN AUTH0 Y EN MI BASE DE DATOS, LO REDIRIJO AL LOGIN.
+          return (window.location.href = "/auth/login");
+        }
+      }
+    );
+  };
   return (
-    <form className="my-8 p-2">
+    <form className="my-8 p-2" onSubmit={onSubmit}>
       {/* email input */}
       <div className="relative mb-2">
         <input
           id="email"
+          name="email"
+          value={email}
+          onChange={onInputChange}
           className="w-full rounded px-3 border border-gray-300 pt-5 pb-2 focus:border-purple focus:ring-1 focus:ring-blue-700 focus:outline-none input active:outline-none"
           type="text"
           autoFocus
+          placeholder="Ingresa tu email aqui"
         />
-        <label
-          htmlFor="email"
-          className="label absolute mt-2 ml-3 leading-tighter text-gray-600 text-base cursor-text"
-        >
-          Ingresa tu email aquí
-        </label>
       </div>
       {/* password input */}
       <div className="relative mb-2">
         <input
           id="password"
+          name="password"
+          value={password}
+          onChange={onInputChange}
           className="w-full rounded px-3 border border-gray-300 pt-5 pb-2 focus:border-purple focus:ring-1 focus:ring-blue-700 focus:outline-none input active:outline-none"
           type="password"
+          placeholder="password"
         />
-        <label
-          htmlFor="password"
-          className="label absolute mt-2 ml-3 leading-tighter text-gray-600 text-base cursor-text"
-        >
-          Ingresa tu contraseña
-        </label>
       </div>
-      {/* repetir password */}
-      <div className="relative mb-2">
-        <input
-          id="password"
-          className="w-full rounded px-3 border border-gray-300 pt-5 pb-2 focus:border-purple focus:ring-1 focus:ring-blue-700 focus:outline-none input active:outline-none"
-          type="password"
-        />
-        <label
-          htmlFor="password"
-          className="label absolute mt-2 ml-3 leading-tighter text-gray-600 text-base cursor-text"
-        >
-          Vuelve a ingresar tu contraseña
-        </label>
-      </div>
+
       <div className="space-y-9 text-right">
         <div className="flex w-full justify-center gap-3">
           <button className="py-2 px-6 rounded text-white btn bg-purple hover:bg-violet-700 ">

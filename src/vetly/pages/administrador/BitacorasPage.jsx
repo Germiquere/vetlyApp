@@ -1,6 +1,6 @@
 import React from "react";
-import { Bitacoras } from "../components";
-import { VetlyLayout } from "../layout/VetlyLayout";
+import { Bitacoras } from "../../components";
+import { VetlyLayout } from "../../layout/VetlyLayout";
 
 export const BitacorasPage = () => {
   return (

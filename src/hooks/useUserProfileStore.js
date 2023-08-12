@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { startGettingUserProfileByEmail } from "../store/userProfile/thunks";
+import { startLoginProfileByEmail } from "../store/userProfile/thunks";
 
 export const useUserProfileStore = () => {
   const {
@@ -13,9 +13,14 @@ export const useUserProfileStore = () => {
     errorMessage,
   } = useSelector((state) => state.userProfile);
   const dispatch = useDispatch();
-  const handlestartGettingUserProfileByEmail = (email) => {
-    dispatch(startGettingUserProfileByEmail());
+  const handleStartLoginProfileByEmail = () => {
+    const data = JSON.parse(localStorage.getItem("authUser"));
+    if (data?.isAuthenticated) {
+      console.log(data.isAuthenticated);
+      dispatch(startLoginProfileByEmail(data.email));
+    }
   };
+
   return {
     // PROPIEDADES
     loading,
@@ -27,6 +32,6 @@ export const useUserProfileStore = () => {
     patentesPorFamilia_Asignadas,
     errorMessage,
     // METODOS
-    handlestartGettingUserProfileByEmail,
+    handleStartLoginProfileByEmail,
   };
 };

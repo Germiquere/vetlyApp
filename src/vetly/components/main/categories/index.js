@@ -12,3 +12,4 @@ export * from "./Bitacoras";
 export * from "./ErroresDeUsuarios";
 export * from "./PermisosDeUsuarios";
 export * from "./Backup";
+export * from "./client/index";

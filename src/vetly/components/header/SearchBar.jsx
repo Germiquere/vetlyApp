@@ -9,7 +9,6 @@ export const SearchBar = () => {
         placeholder="Search and hit Enter"
         className="flex-2 border border-gray-300 rounded-none p-2 w-64"
       />
-      {/* cambien el categoty por categories por un error gramatical en ingles */}
       <p className="text-tertiary">All Categories</p>
     </div>
   );

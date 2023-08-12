@@ -5,7 +5,7 @@ export const userProfileSlice = createSlice({
     loading: false,
     id: null,
     email: null,
-    tipo_usuario: "invitado", //administrador,cliente,profesional,veterinario,invitado
+    tipo_usuario: "INVITADO", //administrador,cliente,profesional,veterinario,invitado
     familias_asignadas: null,
     patentesIndividuales_Asignadas: null,
     patentesPorFamilia_Asignadas: null,

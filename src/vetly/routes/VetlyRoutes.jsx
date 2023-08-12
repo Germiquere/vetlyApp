@@ -1,29 +1,43 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import {
+  AgendaPage,
   BackupPage,
   BitacorasPage,
   ComidaDeGatoPage,
   ComidaDePerroPage,
   ErroresDeUsuariosPage,
+  HistoriaClinicaPage,
   JuguetesPage,
+  MascotasPage,
+  PagosPage,
   PeluqueriaPage,
   PermisosDeUsuariosPage,
   TransportadorasPage,
+  TurnoMedicoPage,
   UsuariosPage,
   VacunasPage,
   VetlyPage,
 } from "../pages";
 import { useUserProfileStore } from "../../hooks/useUserProfileStore";
+import { useEffect } from "react";
 
 export const VetlyRoutes = () => {
+  const { handleStartLoginProfileByEmail } = useUserProfileStore();
+  useEffect(() => {
+    handleStartLoginProfileByEmail();
+  }, []);
   const { tipo_usuario } = useUserProfileStore();
-  const tipoUsuarioAdministrador = tipo_usuario === "administrador";
-  const tipoUsuarioInvitado = tipo_usuario === "invitado";
+  const tipoUsuarioAdministrador = tipo_usuario === "ADMINISTRADOR";
+  const tipoUsuarioInvitado = tipo_usuario === "INVITADO";
+  const tipoUsuarioCliiente = tipo_usuario === "CLIENTE";
+
   return (
     <Routes>
       {/* invitado muestra literas */}
       {tipoUsuarioInvitado && <Route path="/" element={<VetlyPage />} />}
-      {/* admin muestra los usuarios */}
+      {/* cliente muestra las mascotas */}
+      {tipoUsuarioCliiente && <Route path="/" element={<MascotasPage />} />}
+      {/* admin muestra usuarios */}
       {tipoUsuarioAdministrador && (
         <Route path="/" element={<UsuariosPage />} />
       )}
@@ -46,6 +60,25 @@ export const VetlyRoutes = () => {
       )}
       {tipoUsuarioInvitado && (
         <Route path="/vacunas" element={<VacunasPage />} />
+      )}
+      {/* CLIENT ROUTES */}\
+      {tipoUsuarioCliiente && (
+        <Route path="/cliente/mascotas" element={<MascotasPage />} />
+      )}
+      {tipoUsuarioCliiente && (
+        <Route path="/cliente/agenda" element={<AgendaPage />} />
+      )}
+      {tipoUsuarioCliiente && (
+        <Route path="/cliente/turnoMedico" element={<TurnoMedicoPage />} />
+      )}
+      {tipoUsuarioCliiente && (
+        <Route path="/cliente/pagos" element={<PagosPage />} />
+      )}
+      {tipoUsuarioCliiente && (
+        <Route
+          path="/cliente/historiaClinica"
+          element={<HistoriaClinicaPage />}
+        />
       )}
       {/* ADMIN ROUTES */}
       {tipoUsuarioAdministrador && (

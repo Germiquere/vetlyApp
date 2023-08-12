@@ -1,37 +1,59 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useForm } from "../../hooks";
+import { auth } from "../../services/AuthService";
 
 export const LoginForm = () => {
+  const dataForm = {
+    email: "",
+    password: "",
+  };
+  const { email, password, onInputChange, formState } = useForm(dataForm);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formState);
+    auth.login(
+      {
+        realm: "Username-Password-Authentication",
+        username: email,
+        password: password,
+        redirectUri: "http://127.0.0.1:5173/auth/authenticate",
+        responseType: "token",
+      },
+      function (err, result) {
+        // TODO: MANEJAR DE UNA FORMA MAS LINDA EL ERROR
+        if (err) return alert("Algo salio mal: " + err.message);
+        // return alert("Login exitoso!");
+        return console.log(result);
+      }
+    );
+  };
   return (
-    <form className="my-8 p-2 border-l-[2px]">
+    <form className="my-8 p-2 border-l-[2px]" onSubmit={onSubmit}>
       {/* email input */}
       <div className="relative mb-2">
         <input
           id="email"
+          name="email"
+          value={email}
+          onChange={onInputChange}
           className="w-full rounded px-3 border border-gray-300 pt-5 pb-2 focus:border-purple focus:ring-1 focus:ring-blue-700 focus:outline-none input active:outline-none"
           type="text"
           autoFocus
+          placeholder="Ingresa tu email aquí"
         />
-        <label
-          htmlFor="email"
-          className="label absolute mt-2 ml-3 leading-tighter text-gray-600 text-base cursor-text"
-        >
-          Ingresa tu email aquí
-        </label>
       </div>
       {/* password input */}
       <div className="relative mb-2">
         <input
           id="password"
+          name="password"
+          value={password}
+          onChange={onInputChange}
           className="w-full rounded px-3 border border-gray-300 pt-5 pb-2 focus:border-purple focus:ring-1 focus:ring-blue-700 focus:outline-none input active:outline-none"
           type="password"
+          placeholder="Ingresa tu contraseña"
         />
-        <label
-          htmlFor="password"
-          className="label absolute mt-2 ml-3 leading-tighter text-gray-600 text-base cursor-text"
-        >
-          Ingresa tu contraseña
-        </label>
       </div>
       <div className="space-y-9 text-right">
         <div>

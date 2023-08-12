@@ -1,3 +1,4 @@
+// esta consulta a la api no la termine usando al hacer el refactor del codigo, la remplaze por la del postLoginProfilebyEmail, por el simple hecho de que ambas me reotrnaban lo mismo en base a un email
 export const getUserProfileByEmail = async (email) => {
   try {
     const res = await fetch(

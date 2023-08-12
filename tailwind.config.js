@@ -12,6 +12,7 @@ module.exports = {
         secondary: "#0D3460",
         tertiary: "#C5C5C5",
         purple: "#5A1F88",
+        mainColor: "#FAFAFA",
         "black-200": "#333333",
         "white-100": "#f2f2f2",
       },

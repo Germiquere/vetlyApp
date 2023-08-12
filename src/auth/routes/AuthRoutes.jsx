@@ -1,6 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { LoginPage, RegisterPage, SelectUserTypePage } from "../pages";
-import { SelectUserType } from "../components";
+import {
+  LoginPage,
+  RedirectPage,
+  RegisterPage,
+  SelectUserTypePage,
+} from "../pages";
 
 export const AuthRoutes = () => {
   return (
@@ -8,7 +12,9 @@ export const AuthRoutes = () => {
       <Route path="login" element={<LoginPage />} />
       <Route path="userType" element={<SelectUserTypePage />} />
       <Route path="register" element={<RegisterPage />} />
-      {/* si se entra a mostrar el authroutes y no estoy en /login o /registro lo redirijo al login */}
+      <Route path="authenticate" element={<RedirectPage />} />
+
+      {/* si se entra a mostrar el authroutes y no estoy en /login ,/userType,authenticate, /register lo redirijo al login */}
       <Route path="/*" element={<Navigate to="/auth/login" />} />
     </Routes>
   );

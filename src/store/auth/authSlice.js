@@ -2,12 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    counter: 10,
+    isAuthenticated: false,
+    email: null,
+    nickname: null,
+    picture: null,
   },
   reducers: {
-    increment: (state) => {
-      state.counter += 1;
+    setIsAuthenticated: (state) => {
+      state.isAuthenticated = true;
+    },
+    setAuthState: (state, { payload }) => {
+      state.isAuthenticated = payload.isAuthenticated;
+      state.email = payload.email;
+      state.nickname = payload.nickname;
+      state.picture = payload.picture;
     },
   },
 });
-export const { increment } = authSlice.actions;
+export const { setIsAuthenticated, setAuthState } = authSlice.actions;
