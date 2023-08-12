@@ -29,5 +29,5 @@ Las validaciones aun no estan implementadas a la hora de registrar un usuario o 
 
 ## CREDENCIALES
 Requisitos para que puedan crear una cuenta: 
-- El EMAIL tenga formato de email(ejemplo@gmail.com)
-- La CONTRASEÑA tiene que tener minimo 8 digitos(12345678)
+- EMAIL con formato de email(ejemplo@gmail.com)
+- CONTRASEÑA tiene que tener minimo 8 digitos(12345678)
