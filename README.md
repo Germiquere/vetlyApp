@@ -20,6 +20,7 @@ En conclusión, deseo expresar mi gratitud por esta oportunidad de compartir mi 
 - Auth0-js
 - React-Router
 - Redux
+- Redux Toolkit
 
 ## URL EN LA CUAL ESTA HOSTEADO AUTH0
 
