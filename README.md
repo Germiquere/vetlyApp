@@ -22,11 +22,6 @@ En conclusión, deseo expresar mi gratitud por esta oportunidad de compartir mi 
 - Redux
 - Redux Toolkit
 
-## URL EN LA CUAL ESTA HOSTEADO AUTH0
-
-Es necesario ejecutar la aplicacion con vite con esta direccion para que funcione la aplicacion, si no van a tener permisos para el registro y el login de los usuarios.
-http://127.0.0.1:5173
-
 ## VALIDACIONES
 
 Las validaciones aun no estan implementadas a la hora de registrar un usuario o ingresar con un usuario que ya esta registrado.
